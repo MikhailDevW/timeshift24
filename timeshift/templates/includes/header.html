@@ -2,6 +2,7 @@
     <div class="topnav">
       <a class="active" href="#home">TIMESHIFT</a>
       <form autocomplete="off" method="post">
+        {% csrf_token %}
         <input class="" name="city_name" type="text" placeholder="Город...">
       </form>
     </div>

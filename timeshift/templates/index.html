@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="wrapper ">
-    <p class="cityname"><b>{{ city }}</b> - точное время</p>
-    <p class="time">21:00:00</p>
-    <p class="date">{{ date }} февраля 2023.</p>
+    <p class="cityname"><b>{{ name }}</b> - точное время</p>
+    <p class="time">{{ local_time }}</p>
+    <p class="date">6 февраля 2023.</p>
     <div class="city">
       <div class="more_info">
         <a href="#"><b>Все города</b><br>Узнать</a>
