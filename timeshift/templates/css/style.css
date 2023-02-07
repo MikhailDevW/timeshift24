@@ -1,0 +1,212 @@
+/*style here*/
+@font-face{
+  font-family: "MontserratBold";
+  font-style: normal;
+  font-weight: 400;
+  /* Браузер сначала попробует найти шрифт локально */
+  src: local("MontserratBold"),
+       /* Если не получилось, загрузит woff2 */
+       url("/fonts/MontserratBold.woff2") format("woff2"),
+       /* Если браузер не поддерживает woff2, загрузит woff */
+       url("MontserratBold.woff") format("woff");
+}
+
+@font-face{
+   font-family: "MontserratBold";
+   font-style: normal;
+   font-weight: 700;
+   src: local("MontserratBold"),
+        url("../fonts/MontserratBold.woff2") format("woff2"),
+        url("MontserratBold.woff") format("woff");
+}
+
+@font-face{
+  font-family: "MontserratRegular";
+  font-style: normal;
+  font-weight: 400;
+  /* Браузер сначала попробует найти шрифт локально */
+  src: local("MontserratRegular"),
+       /* Если не получилось, загрузит woff2 */
+       url("../fonts/MontserratRegular.woff2") format("woff2"),
+       /* Если браузер не поддерживает woff2, загрузит woff */
+       url("MontserratRegular.woff") format("woff");
+}
+
+
+@font-face{
+   font-family: "Montserrat-Italic";
+   font-style: italic;
+   font-weight: 700;
+   src: local("Montserrat-Italic"),
+        url("../fonts/MontserratItalic.woff2") format("woff2"),
+        url("MontserratItalic.woff") format("woff");
+}
+
+@font-face{
+   font-family: "Montserrat-Italic";
+   font-style: italic;
+   font-weight: 400;
+   src: local("Montserrat-Italic"),
+        url("../fonts/MontserratItalic.woff2") format("woff2"),
+        url("MontserratItalic.woff") format("woff");
+}
+
+
+:root{
+  --basic-red: #C35;
+  --basic-greylight:#e5e5e5;
+  --basic-background:#F1F5F7;
+  --white:#FFFFFF;
+  --error:#BA2732;
+}
+
+body {
+  min-width: 1200px;
+  margin: 0;
+  padding: 0;
+  background-color: var(--white);
+  font-family: "MontserratBold", "Arial", sans-serif;
+  font-style: normal;
+  font-size: 18px;
+}
+
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+
+/*  */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--white);
+  overflow: hidden;
+}
+  
+  /* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 1.5vw 1.5vw;
+  text-decoration: none;
+  font-size: 17px;
+}
+  
+  /* Change the color of links on hover */
+.topnav a.active:hover {
+  background-color: #ddd;
+  color: black;
+}
+  
+  /* Add a color to the active/current link */
+.topnav a.active {
+  background-color: var(--basic-red);
+  color: white;
+}
+
+.cityname{
+  font-family: "MontserratRegular", "Arial", sans-serif;
+  font-size: 40px;
+  margin: 0px;
+  margin-top: 4vh;
+}
+
+input{
+  width: 500px;
+}
+
+input[type=text] {
+  width: 100%;
+  background-color: var(--basic-greylight);
+  background-image: url('searchicon.png');
+  background-position: 1vw 1vw;
+  background-repeat: no-repeat;
+  padding: 1.2vw 2vw;
+  padding-left: 4vw;
+  margin: 1vh 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+.time{
+    font-family: "MontserratBold", "Arial", sans-serif;
+    text-align: center;
+    font-size: 250px;
+    margin: 0;
+    line-height: 30vh;
+}
+
+.date{
+  text-align: end;
+  font-family: "MontserratRegular", "Arial", sans-serif;
+  font-size: 40px;
+  margin: 0;
+  margin-top: 2vh;
+}
+  
+.city{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vw;
+  }
+
+.more_info{
+  padding: 5px;
+  word-break: break-word;
+  font-family: "MontserratRegular", "Arial", sans-serif;
+  text-align: end;
+  color: black;
+  background-color: var(--basic-greylight);
+  padding: 2vh 1vw;
+}
+
+.more_info a{
+  text-decoration: none;
+  color: black;
+}
+
+.cities{
+  display: flex;
+}
+
+.cities a{
+  align-self: flex-start;
+  padding: 5px;
+  word-break: break-word;
+  font-family: "MontserratRegular", "Arial", sans-serif;
+  text-align: end;
+  color: black;
+  text-decoration: none;
+  background-color: var(--basic-greylight);
+  margin-left: 2vw;
+  padding: 2vh 1vw;
+}
+
+.footer{
+  background-color: grey;
+}
+
+.main-footer__menu{
+  background-color: var(--basic-greylight);
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 1.5vh 0;
+}
+
+.main-footer__menu li{
+  margin-right: 2vw;
+}
+
+.main-footer__menu li a{
+  font-family: "MontserratRegular", "Arial", sans-serif;
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+}
