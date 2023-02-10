@@ -1,9 +1,9 @@
 <div class="wrapper">
-    <div class="topnav">
-      <a class="active" href="{% url 'index' %}">TIMESHIFT</a>
-      <form autocomplete="off" method="post">
-        {% csrf_token %}
-        <input class="" name="city_name" type="text" placeholder="Город...">
-      </form>
-    </div>
+  <div class="topnav">
+    <a class="active" href="{% url 'index' %}">TIMESHIFT</a>
+    <form autocomplete="off" method="post">
+      {% csrf_token %}
+      <input class="" name="city_name" type="text" placeholder="Город...">
+    </form>
   </div>
+</div>

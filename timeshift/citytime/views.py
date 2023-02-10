@@ -35,5 +35,4 @@ def index(request):
             'name': 'Москва',
             'local_time': response_data['datetime'][-8:],
         }
-        print(response_data)
         return render(request, template, data)

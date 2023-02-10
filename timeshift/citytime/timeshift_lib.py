@@ -31,6 +31,7 @@ class AbstractAPI:
             'name': city_name,
         }
 
+    # На данный момент данный метод не используется!!!!
     def get_local_time(
         self,
         gmt_offset,
