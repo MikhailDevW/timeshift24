@@ -4,7 +4,5 @@ from . import views
 
 urlpatterns = [
     # Главная страница
-    path('', views.index),
-    # Страница со списком сортов мороженого
-    path('city/str:city', views.fetch_city),
+    path('', views.index, name='index'),
 ]
