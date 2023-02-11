@@ -209,3 +209,8 @@ input[type=text] {
   color: black;
   text-decoration: none;
 }
+
+
+.city_table{
+  margin: 8vh auto;
+}

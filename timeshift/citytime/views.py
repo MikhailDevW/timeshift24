@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
 from citytime import timeshift_lib as ts
+from .models import City
+
+import datetime
 
 
 def index(request):
@@ -60,3 +63,18 @@ def index(request):
             'year': response_data['datetime'][:4],
         }
         return render(request, template, data)
+
+
+def allcities(request):
+    template = 'allcities.html'
+    cities = City.objects.all()[:10]
+    # api = ts.AbstractAPI()
+    utc_time = datetime.datetime.now(datetime.timezone.utc)
+    # В словаре context отправляем информацию в шаблон
+    context = {
+        'cities': cities,
+        'utc': utc_time,
+        'hours': int(utc_time.strftime('%H')),
+        'minutes': utc_time.strftime('%M'),
+    }
+    return render(request, template, context)
