@@ -153,16 +153,16 @@ input[type=text] {
   }
 
 .more_info{
+  display: flex;
+}
+
+.more_info a{
   padding: 5px;
-  word-break: break-word;
   font-family: "MontserratRegular", "Arial", sans-serif;
   text-align: end;
   color: black;
   background-color: var(--basic-greylight);
   padding: 2vh 1vw;
-}
-
-.more_info a{
   text-decoration: none;
   color: black;
 }
@@ -174,7 +174,6 @@ input[type=text] {
 .cities a{
   align-self: flex-start;
   padding: 5px;
-  word-break: break-word;
   font-family: "MontserratRegular", "Arial", sans-serif;
   text-align: end;
   color: black;
