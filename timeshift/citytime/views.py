@@ -3,6 +3,7 @@ from django.shortcuts import render
 from citytime import timeshift_lib as ts
 from .models import City
 
+
 from datetime import datetime as dt, timezone as tz
 import locale
 
@@ -19,12 +20,12 @@ def index(request):
         city_name = request.POST['city_name'].capitalize()
         api = ts.AbstractAPI()
         response_data = api.fetch_city_data(city_name)
-        city_dt = dt.strptime(response_data['datetime'], '%Y-%m-%d %H:%M:%S')
-        date = city_dt.strftime('%d %B %Y')
-        time = city_dt.strftime('%H:%M:%S')
 
         # Если нет ошибки и город через API найден
         if not response_data.get('error', False):
+            city_dt = dt.strptime(response_data['datetime'], '%Y-%m-%d %H:%M:%S')
+            date = city_dt.strftime('%d %B %Y')
+            time = city_dt.strftime('%H:%M:%S')
             data = {
                 'name': city_name,
                 'time': time,
