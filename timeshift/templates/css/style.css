@@ -6,7 +6,7 @@
   /* Браузер сначала попробует найти шрифт локально */
   src: local("MontserratBold"),
        /* Если не получилось, загрузит woff2 */
-       url("/fonts/MontserratBold.woff2") format("woff2"),
+       /*url("/fonts/MontserratBold.woff2") format("woff2"),*/
        /* Если браузер не поддерживает woff2, загрузит woff */
        url("MontserratBold.woff") format("woff");
 }
@@ -16,7 +16,7 @@
    font-style: normal;
    font-weight: 700;
    src: local("MontserratBold"),
-        url("../fonts/MontserratBold.woff2") format("woff2"),
+        /*url("../fonts/MontserratBold.woff2") format("woff2"),*/
         url("MontserratBold.woff") format("woff");
 }
 
@@ -27,7 +27,7 @@
   /* Браузер сначала попробует найти шрифт локально */
   src: local("MontserratRegular"),
        /* Если не получилось, загрузит woff2 */
-       url("../fonts/MontserratRegular.woff2") format("woff2"),
+       /*url("../fonts/MontserratRegular.woff2") format("woff2"),*/
        /* Если браузер не поддерживает woff2, загрузит woff */
        url("MontserratRegular.woff") format("woff");
 }
@@ -38,7 +38,7 @@
    font-style: italic;
    font-weight: 700;
    src: local("Montserrat-Italic"),
-        url("../fonts/MontserratItalic.woff2") format("woff2"),
+        /*url("../fonts/MontserratItalic.woff2") format("woff2"),*/
         url("MontserratItalic.woff") format("woff");
 }
 
@@ -47,7 +47,7 @@
    font-style: italic;
    font-weight: 400;
    src: local("Montserrat-Italic"),
-        url("../fonts/MontserratItalic.woff2") format("woff2"),
+        /*url("../fonts/MontserratItalic.woff2") format("woff2"),*/
         url("MontserratItalic.woff") format("woff");
 }
 
@@ -120,7 +120,7 @@ input{
 input[type=text] {
   width: 100%;
   background-color: var(--basic-greylight);
-  background-image: url('searchicon.png');
+  /*background-image: url('searchicon.png');*/
   background-position: 1vw 1vw;
   background-repeat: no-repeat;
   padding: 1.2vw 2vw;
@@ -208,4 +208,9 @@ input[type=text] {
   font-size: 12px;
   color: black;
   text-decoration: none;
+}
+
+
+.city_table{
+  margin: 8vh auto;
 }

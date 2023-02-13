@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="wrapper ">
+  {{ utc }}
+  <table class="city_table">
+    <tr>
+      <td>Название</td>
+      <td>Широта.</td>
+      <td>Долгота.</td>
+      <td>Время</td>
+    </tr>
+    {% for city in cities %}
+    <tr>
+      <td> {{ city.name}} </td>
+      <td> {{ city.latitude}} </td>
+      <td> {{ city.longitude}} </td>
+      <td> {{ hours }}:{{ minutes }}</td>
+    </tr>
+    {% endfor %} 
+  </table>
+</div>
+{% endblock %} 
