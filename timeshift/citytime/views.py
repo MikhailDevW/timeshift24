@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from citytime import timeshift_lib as ts
-from .models import City
+from .models import City, Update
 
 import datetime
 from datetime import datetime
@@ -91,3 +91,13 @@ def allcities(request):
     #    'utc': utc_time,
     #    'hours': int(utc_time.strftime('%H')),
     #    'minutes': utc_time.strftime('%M'),
+
+
+def news(request):
+    template = 'news.html'
+    news = Update.objects.all()[:10]
+
+    context = {
+        'news': news,
+    }
+    return render(request, template, context)

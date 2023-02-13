@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import City, TimeZone
+from .models import City, TimeZone, Update
 
 
 @admin.register(City)
@@ -21,3 +21,13 @@ class TimeZoneAdmin(admin.ModelAdmin):
     # search_fields = ('text',)
     # Добавляем возможность фильтрации по дате
     list_filter = ('timezone_name',)
+
+
+@admin.register(Update)
+class UpdateAdmin(admin.ModelAdmin):
+    # Перечисляем поля, которые должны отображаться в админке
+    list_display = ('title', 'description', 'date',)
+    # Добавляем интерфейс для поиска по тексту постов
+    # search_fields = ('text',)
+    # Добавляем возможность фильтрации по дате
+    list_filter = ('title',)

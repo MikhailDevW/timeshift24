@@ -6,4 +6,5 @@ urlpatterns = [
     # Главная страница
     path('', views.index, name='index'),
     path('allcities/', views.allcities, name='all'),
+    path('news/', views.news, name='news'),
 ]
