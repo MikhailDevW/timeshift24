@@ -20,4 +20,4 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 ### Авторы
-Mikhail Karasev
+Mikhail Karasev, Ivan Efremov
