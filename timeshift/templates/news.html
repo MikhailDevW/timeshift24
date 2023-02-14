@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="wrapper ">
+    {% for new in news %}
+    <ul>
+            <li>{{ new.title }}</li>
+            <li>{{ new.date }}</li>
+    </ul>
+            <p>{{ new.description }}</p>
+    {% endfor %} 
+  </table>
+</div>
+{% endblock %} 

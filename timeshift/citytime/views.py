@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from citytime import timeshift_lib as ts
-from .models import City
+from .models import City, Update
 
 import datetime
 from datetime import datetime
@@ -58,19 +58,28 @@ def index(request):
     else:
         api = ts.AbstractAPI()
         response_data = api.fetch_city_data('Moscow')
-        city_time = datetime.strptime(
-                response_data['datetime'],
-                '%Y-%m-%d %H:%M:%S')
-        data = {
-            'name': 'Москва',
-            'hours': str(city_time.hour).zfill(2),
-            'minutes': str(city_time.minute).zfill(2),
-            'seconds': str(city_time.second).zfill(2),
-            'date': city_time.day,
-            'month': month[str(city_time.month)],
-            'year': city_time.year,
-        }
-        return render(request, template, data)
+        if not response_data.get('error', False):
+            city_time = datetime.strptime(
+                    response_data['datetime'],
+                    '%Y-%m-%d %H:%M:%S')
+            data = {
+                'name': 'Москва',
+                'hours': str(city_time.hour).zfill(2),
+                'minutes': str(city_time.minute).zfill(2),
+                'seconds': str(city_time.second).zfill(2),
+                'date': city_time.day,
+                'month': month[str(city_time.month)],
+                'year': city_time.year,
+            }
+            return render(request, template, data)
+        else:
+            data = {
+                'name': 'Не найден',
+                'hours': '--',
+                'minutes': '--',
+                'seconds': '--',
+            }
+            return render(request, template, data)
 
 
 def allcities(request):
@@ -91,3 +100,25 @@ def allcities(request):
     #    'utc': utc_time,
     #    'hours': int(utc_time.strftime('%H')),
     #    'minutes': utc_time.strftime('%M'),
+
+
+def news(request):
+    template = 'news.html'
+    news = Update.objects.all()[:10]
+
+    context = {
+        'news': news,
+    }
+    return render(request, template, context)
+
+
+def contact(request):
+    template = 'news.html'
+
+    return render(request, template)
+
+
+def about(request):
+    template = 'news.html'
+
+    return render(request, template)
