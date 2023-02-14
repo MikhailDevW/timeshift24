@@ -29,8 +29,8 @@ class TimeZone(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=50)
-    latitude = models.FloatField(null=True)
-    longitude = models.FloatField(null=True)
+    latitude = models.FloatField(blank=True)
+    longitude = models.FloatField(blank=True)
     on_main = models.BooleanField()
     timezone = models.ForeignKey(
         TimeZone,

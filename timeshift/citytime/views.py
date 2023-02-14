@@ -58,19 +58,28 @@ def index(request):
     else:
         api = ts.AbstractAPI()
         response_data = api.fetch_city_data('Moscow')
-        city_time = datetime.strptime(
-                response_data['datetime'],
-                '%Y-%m-%d %H:%M:%S')
-        data = {
-            'name': 'Москва',
-            'hours': str(city_time.hour).zfill(2),
-            'minutes': str(city_time.minute).zfill(2),
-            'seconds': str(city_time.second).zfill(2),
-            'date': city_time.day,
-            'month': month[str(city_time.month)],
-            'year': city_time.year,
-        }
-        return render(request, template, data)
+        if not response_data.get('error', False):
+            city_time = datetime.strptime(
+                    response_data['datetime'],
+                    '%Y-%m-%d %H:%M:%S')
+            data = {
+                'name': 'Москва',
+                'hours': str(city_time.hour).zfill(2),
+                'minutes': str(city_time.minute).zfill(2),
+                'seconds': str(city_time.second).zfill(2),
+                'date': city_time.day,
+                'month': month[str(city_time.month)],
+                'year': city_time.year,
+            }
+            return render(request, template, data)
+        else:
+            data = {
+                'name': 'Не найден',
+                'hours': '--',
+                'minutes': '--',
+                'seconds': '--',
+            }
+            return render(request, template, data)
 
 
 def allcities(request):
@@ -101,3 +110,15 @@ def news(request):
         'news': news,
     }
     return render(request, template, context)
+
+
+def contact(request):
+    template = 'news.html'
+
+    return render(request, template)
+
+
+def about(request):
+    template = 'news.html'
+
+    return render(request, template)

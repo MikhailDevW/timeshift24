@@ -11,6 +11,7 @@ class CityAdmin(admin.ModelAdmin):
     # search_fields = ('text',)
     # Добавляем возможность фильтрации по дате
     list_filter = ('name',)
+    empty_value_display = 'empty'
 
 
 @admin.register(TimeZone)
