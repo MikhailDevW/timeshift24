@@ -1,8 +1,7 @@
 from django.shortcuts import render
 
 from citytime import timeshift_lib as ts
-from .models import City
-
+from .models import City, Update
 
 from datetime import datetime as dt, timezone as tz
 import locale
@@ -22,6 +21,7 @@ def index(request):
         response_data = api.fetch_city_data(city_name)
 
         # Если нет ошибки и город через API найден
+        # а также строка содержит только алфавитные символы
         if not response_data.get('error', False):
             city_dt = dt.strptime(response_data['datetime'], '%Y-%m-%d %H:%M:%S')
             date = city_dt.strftime('%d %B %Y')
@@ -36,7 +36,9 @@ def index(request):
         else:
             data = {
                 'name': 'Не найден',
-                'local_time': '--:--',
+                'hours': '--',
+                'minutes': '--',
+                'seconds': '--',
             }
             return render(request, template, data)
     else:
@@ -57,12 +59,40 @@ def allcities(request):
     template = 'allcities.html'
     cities = City.objects.all()[:10]
     # api = ts.AbstractAPI()
-    utc_time = dt.now(tz.utc)
+    # utc_time = dt.now(tz.utc)
+
     # В словаре context отправляем информацию в шаблон
     context = {
         'cities': cities,
-        'utc': utc_time,
-        'hours': int(utc_time.strftime('%H')),
-        'minutes': utc_time.strftime('%M'),
     }
     return render(request, template, context)
+
+    # utc_time = datetime.now(datetime.timezone.utc)
+    # В словаре context отправляем информацию в шаблон
+    # context = {
+    #    'cities': cities,
+    #    'utc': utc_time,
+    #    'hours': int(utc_time.strftime('%H')),
+    #    'minutes': utc_time.strftime('%M'),
+
+
+def news(request):
+    template = 'news.html'
+    news = Update.objects.all()[:10]
+
+    context = {
+        'news': news,
+    }
+    return render(request, template, context)
+
+
+def contact(request):
+    template = 'news.html'
+
+    return render(request, template)
+
+
+def about(request):
+    template = 'news.html'
+
+    return render(request, template)
