@@ -6,7 +6,7 @@ from .models import City, Update
 from datetime import datetime as dt
 import locale
 
-locale.setlocale(locale.LC_TIME, 'ru')
+locale.setlocale(locale.LC_ALL, 'ru')
 
 
 def index(request):
@@ -43,14 +43,26 @@ def index(request):
             return render(request, template, data)
     else:
         response_data = api.fetch_city_data('Moscow')
-        city_dt = dt.strptime(response_data['datetime'], '%Y-%m-%d %H:%M:%S')
-        date = city_dt.strftime('%d %B %Y')
-        data = {
-            'date': date,
-            'name': 'Москва',
-            'time': city_dt,
-        }
-        return render(request, template, data)
+        if not response_data.get('error', False):
+            city_dt = dt.strptime(
+                response_data['datetime'],
+                '%Y-%m-%d %H:%M:%S'
+            )
+            date = city_dt.strftime('%d %B %Y')
+            data = {
+                'date': date,
+                'name': 'Москва',
+                'time': city_dt,
+            }
+            return render(request, template, data)
+        else:
+            data = {
+                'name': 'Не найден',
+                'hours': '--',
+                'minutes': '--',
+                'seconds': '--',
+            }
+            return render(request, template, data)
 
 
 def allcities(request):
