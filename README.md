@@ -1,8 +1,8 @@
 # Timeshift
 
 ### Description
-Time is now the currency. We earn it and spend it. The rich can live forever.©
-Here you can find a currency in your city in live. Don't waste your time...
+Time is now the currency. We earn it and spend it. The rich can live forever.©  
+Here you can find a currency in your city in live. Don't waste your time...  
 http://timeshift.pythonanywhere.com/
 
 ### Technology we use:
@@ -13,7 +13,7 @@ http://timeshift.pythonanywhere.com/
 - Hosting: pythonanywhere.com
 
 ### Installation guide
-First you need  for and clone
+First you need fork and clone  
 Install venv:
 ```
 python -3.9 -m venv venv
