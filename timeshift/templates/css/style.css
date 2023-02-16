@@ -132,9 +132,10 @@ input[type=text] {
 
 .time{
     font-family: "MontserratBold", "Arial", sans-serif;
-    text-align: center;
+    text-align: left;
     font-size: 250px;
     margin: 0;
+    margin-left: 6vw;
     line-height: 30vh;
 }
 
