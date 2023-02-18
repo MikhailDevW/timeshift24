@@ -1,19 +1,18 @@
 window.onload = function() {
   function clock() {
     // Seconds
-    let seconds = number (document.getElementById("seconds").innerHTML)
-    document.getElementById("seconds").innerHTML = (seconds < 10 ? '0' : '') + seconds;
+    let seconds = new Date().getSeconds()
+    document.getElementById("seconds").innerHTML = (seconds < 10 ? '0' : '') + seconds
 
     // Minutes
-    let minutes = number (document.getElementById("minutes").innerHTML)
-    document.getElementById("minutes").innerHTML = (minutes < 10 ? '0' : '') + minutes;
+    let minutes = new Date().getMinutes()
+    document.getElementById("minutes").innerHTML = (minutes < 10 ? '0' : '') + minutes
 
     // Hours
-    let hours = number (document.getElementById("hours").innerHTML)
-    document.getElementById("hours").innerHTML = (minutes < 10 ? '0' : '') + hours;
+    let hours = document.getElementById("hours").innerHTML
+    document.getElementById("hours").innerHTML = hours.padStart(2, '0')
   };
 
   clock()
-  setInterval(clock, 1000);
-  
+  setInterval(clock, 1000)
 }
