@@ -3,47 +3,33 @@ from django.shortcuts import render
 from citytime import timeshift_lib as ts
 from .models import City, Update
 
-import datetime
-from datetime import datetime
+from datetime import datetime as dt
+import locale
+
+locale.setlocale(locale.LC_ALL, 'ru')
 
 
 def index(request):
+    api = ts.AbstractAPI()
     template = 'index.html'
-    month: dict = {
-        '1': 'января',
-        '2': 'февраля',
-        '3': 'марта',
-        '4': 'апреля',
-        '5': 'мая',
-        '6': 'июня',
-        '7': 'июля',
-        '8': 'августа',
-        '9': 'сентября',
-        '10': 'октября',
-        '11': 'ноября',
-        '12': 'декабря',
-    }
 
     # Если поступил POST запрос
     if request.method == 'POST':
-        city_name = request.POST['city_name'].lower().capitalize()
-        api = ts.AbstractAPI()
+        city_name = request.POST['city_name'].capitalize()
         response_data = api.fetch_city_data(city_name)
 
         # Если нет ошибки и город через API найден
         # а также строка содержит только алфавитные символы
         if not response_data.get('error', False):
-            city_time = datetime.strptime(
+            city_dt = dt.strptime(
                 response_data['datetime'],
-                '%Y-%m-%d %H:%M:%S')
+                '%Y-%m-%d %H:%M:%S'
+            )
+            date = city_dt.strftime('%d %B %Y')
             data = {
+                'date': date,
                 'name': city_name,
-                'hours': str(city_time.hour).zfill(2),
-                'minutes': str(city_time.minute).zfill(2),
-                'seconds': str(city_time.second).zfill(2),
-                'date': city_time.day,
-                'month': month[str(city_time.month)],
-                'year': city_time.year,
+                'time': city_dt,
             }
             return render(request, template, data)
         # в случае если город не найден через апи
@@ -56,20 +42,17 @@ def index(request):
             }
             return render(request, template, data)
     else:
-        api = ts.AbstractAPI()
         response_data = api.fetch_city_data('Moscow')
         if not response_data.get('error', False):
-            city_time = datetime.strptime(
-                    response_data['datetime'],
-                    '%Y-%m-%d %H:%M:%S')
+            city_dt = dt.strptime(
+                response_data['datetime'],
+                '%Y-%m-%d %H:%M:%S'
+            )
+            date = city_dt.strftime('%d %B %Y')
             data = {
+                'date': date,
                 'name': 'Москва',
-                'hours': str(city_time.hour).zfill(2),
-                'minutes': str(city_time.minute).zfill(2),
-                'seconds': str(city_time.second).zfill(2),
-                'date': city_time.day,
-                'month': month[str(city_time.month)],
-                'year': city_time.year,
+                'time': city_dt,
             }
             return render(request, template, data)
         else:
@@ -86,7 +69,8 @@ def allcities(request):
     template = 'allcities.html'
     cities = City.objects.all()[:10]
     # api = ts.AbstractAPI()
-    # utc_time = datetime.now(datetime.timezone.utc)
+    # utc_time = dt.now(tz.utc)
+
     # В словаре context отправляем информацию в шаблон
     context = {
         'cities': cities,
