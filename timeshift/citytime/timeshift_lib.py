@@ -29,6 +29,7 @@ class AbstractAPI:
         return {
             'datetime': city_data['datetime'],
             'name': city_name,
+            'gmt_offset': city_data['gmt_offset'],
         }
 
     # На данный момент данный метод не используется!!!!
