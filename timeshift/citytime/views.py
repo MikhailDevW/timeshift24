@@ -25,22 +25,17 @@ def index(request):
                 response_data['datetime'],
                 '%Y-%m-%d %H:%M:%S'
             )
+            offset = response_data['gmt_offset']
             date = city_dt.strftime('%d %B %Y')
             data = {
                 'date': date,
                 'name': city_name,
-                'time': city_dt,
+                'offset': offset,
             }
             return render(request, template, data)
         # в случае если город не найден через апи
         else:
-            data = {
-                'name': 'Не найден',
-                'hours': '--',
-                'minutes': '--',
-                'seconds': '--',
-            }
-            return render(request, template, data)
+            return render(request, template, {'name': city_name})
     else:
         response_data = api.fetch_city_data('Moscow')
         if not response_data.get('error', False):
@@ -48,21 +43,16 @@ def index(request):
                 response_data['datetime'],
                 '%Y-%m-%d %H:%M:%S'
             )
+            offset = response_data['gmt_offset']
             date = city_dt.strftime('%d %B %Y')
             data = {
                 'date': date,
                 'name': 'Москва',
-                'time': city_dt,
+                'offset': offset
             }
             return render(request, template, data)
         else:
-            data = {
-                'name': 'Не найден',
-                'hours': '--',
-                'minutes': '--',
-                'seconds': '--',
-            }
-            return render(request, template, data)
+            return render(request, template, {'name': 'APIError'})
 
 
 def allcities(request):
