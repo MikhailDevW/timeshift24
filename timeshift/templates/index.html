@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="wrapper ">
-  <p class="cityname"><b>{{ name }}</b> - точное время</p>
-  {% if not time %}
-		<p class="time">{{ hours }}:{{ minutes }}:{{ seconds }}</p>
+	<p hidden id="offset">{{ offset }}</p>
+  {% if not offset %}
+    <p class="cityname">Город <b>{{ name }}</b> не найден</p>
+		<p class="time">--:--:--</p>
+		<p class="date">{{ date }}</p>
 	{% else %}
+	<p class="cityname"><b>{{ name }}</b> - точное время</p>
 		<p class="time">
-			<rb id="hours">{{ time.hour }}</rb>:<rb id="minutes">{{ time.minute }}</rb>:<rb id="seconds">{{ time.second }}</rb>
+			<rb id="hours"></rb>:<rb id="minutes"></rb>:<rb id="seconds"></rb>
 		</p>
 	{% endif %}
   <p class="date">{{ date }}</p>
